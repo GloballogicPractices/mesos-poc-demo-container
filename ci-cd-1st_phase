@@ -1,0 +1,19 @@
+node {
+  withCredentials([usernamePassword(credentialsId: 'Nexus', usernameVariable: 'N_User', passwordVariable: 'N_Pass')]) {
+    stage('Build Container web') {
+      git 'https://github.com/GloballogicPractices/mesos-poc-demo-container.git'
+      sh 'docker login http://ci-cdnexus.marathon.l4lb.thisdcos.directory -u $D_User -p $D_Pass'
+      sh 'docker build -t demo/web:${BUILD_NUMBER} .'
+    }
+    stage('Upload web container to nexus registry') {
+      sh 'docker tag demo/web:${BUILD_NUMBER} ci-cdnexus.marathon.l4lb.thisdcos.directory/mesos_poc/demo/web:${BUILD_NUMBER}'
+      sh 'docker push ci-cdnexus.marathon.l4lb.thisdcos.directory/mesos_poc/demo/web:${BUILD_NUMBER}'
+    }
+    stage('deploy on dev environment') {
+      marathon(
+        url: 'http://localhost:8001',
+        id: 'dev/robotshop/web',
+        docker: 'ci-cdnexus.marathon.l4lb.thisdcos.directory/mesos_poc/demo/web:${BUILD_NUMBER}')
+    }
+  }
+}
