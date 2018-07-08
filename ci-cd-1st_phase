@@ -1,5 +1,4 @@
 node {
-  {
   stage('Build Container web') {
     git 'https://github.com/GloballogicPractices/mesos-poc-demo-container.git'
     sh 'docker login http://docker-registry.marathon.l4lb.thisdcos.directory:5000
@@ -13,7 +12,7 @@ node {
     marathon(
       url: 'http://localhost:8001',
       id: 'dev/robotshop/web',
-      docker: 'docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}')
-    }
+      docker: 'docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
+    )
   }
 }
