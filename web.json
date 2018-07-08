@@ -1,5 +1,5 @@
 {
-  "id": "dev/test/web",
+  "id": "dev/robotshop/web",
   "backoffFactor": 1.15,
   "backoffSeconds": 30,
   "container": {
