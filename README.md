@@ -5,6 +5,7 @@ manifest prepared for using sed:
 <env> to replace with environment
 <version> to replace with new container image version to deploy
 <elb_dns> to replace with external ELB dns for remote access
+<registry_path> to replace with registry url
 
 service port 10100 is for dev
 for other environments it should be changed too

@@ -1,10 +1,9 @@
 node {
   stage('Build Container web') {
     git 'https://github.com/GloballogicPractices/mesos-poc-demo-container.git'
-    sh 'docker login http://docker-registry.marathon.l4lb.thisdcos.directory:5000 -u "test" -p "test"'
     sh 'docker build -t demo/web:${BUILD_NUMBER} .'
   }
-  stage('Upload web container to nexus registry') {
+  stage('Upload web container to docker registry') {
     sh 'docker tag demo/web:${BUILD_NUMBER} docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
     sh 'docker push docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
   }

@@ -15,7 +15,7 @@
       "type": "DOCKER",
       "volumes": [],
       "docker": {
-        "image": "demo/web:<version>",
+        "image": "<registry_path>/web:<version>",
         "forcePullImage": false,
         "privileged": false,
         "parameters": []
