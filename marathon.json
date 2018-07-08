@@ -1,5 +1,5 @@
 {
-  "id": "/<env>/robotshop/web",
+  "id": "/dev/robotshop/web",
   "backoffFactor": 1.15,
   "backoffSeconds": 30,
   "container": {
@@ -15,7 +15,7 @@
     "type": "DOCKER",
     "volumes": [],
     "docker": {
-      "image": "<registry_path>/web:<version>",
+      "image": "docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:24",
       "forcePullImage": false,
       "privileged": false,
       "parameters": []
@@ -24,11 +24,11 @@
   "cpus": 0.1,
   "disk": 0,
   "env": {
-    "PAYMENT_HOST": "<env>robotshoppayment.marathon.l4lb.thisdcos.directory",
-    "USER_HOST": "<env>robotshopuser.marathon.l4lb.thisdcos.directory",
-    "CART_HOST": "<env>robotshopcart.marathon.l4lb.thisdcos.directory",
-    "CATALOGUE_HOST": "<env>robotshopcatalogue.marathon.l4lb.thisdcos.directory",
-    "SHIPPING_HOST": "<env>robotshopshipping.marathon.l4lb.thisdcos.directory"
+    "PAYMENT_HOST": "devrobotshoppayment.marathon.l4lb.thisdcos.directory",
+    "USER_HOST": "devrobotshopuser.marathon.l4lb.thisdcos.directory",
+    "CART_HOST": "devrobotshopcart.marathon.l4lb.thisdcos.directory",
+    "CATALOGUE_HOST": "devrobotshopcatalogue.marathon.l4lb.thisdcos.directory",
+    "SHIPPING_HOST": "devrobotshopshipping.marathon.l4lb.thisdcos.directory"
   },
   "instances": 1,
   "maxLaunchDelaySeconds": 900,
@@ -55,6 +55,6 @@
   "constraints": [],
   "labels":{
     "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":"<elb_dns>"
+    "HAPROXY_0_VHOST":"gl-poc-tea-tff096-dev-elb-634032854.us-west-1.elb.amazonaws.com"
   }
 }
