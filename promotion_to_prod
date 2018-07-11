@@ -1,0 +1,20 @@
+properties([parameters([
+    string(defaultValue: '', description: 'container version to deploy on prod', name: 'container_version_for_promotion')
+])])
+
+node {
+  stage('deploy on prod environment') {
+    sh("sed -i.bak 's#<version>#${container_version_for_promotion}#' ./manifest/web.json")
+    sh("sed -i.bak 's#<env>#prod#' ./manifest/web.json")
+    sh("sed -i.bak 's#<elb_dns>#gl-poc-tea-tff096-pub-agt-elb-1865881313.us-west-1.elb.amazonaws.com/#' ./manifest/web.json")
+    sh("sed -i.bak 's#<registry_path>#docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo#' ./manifest/web.json")
+    // sh("cat ./manifest/web.json")
+
+    marathon(
+      url: 'http://leader.mesos:8080',
+      id: 'prod/robotshop/web',
+      filename: './manifest/web.json',
+      forceUpdate: true,
+    )
+  }
+}
