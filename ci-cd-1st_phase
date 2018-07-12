@@ -5,8 +5,8 @@ node {
     sh 'docker build -t demo/web:${BUILD_NUMBER} .'
   }
   stage('Upload web container to docker registry') {
-    sh 'docker tag demo/web:${BUILD_NUMBER} docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
-    sh 'docker push docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
+    sh 'docker tag demo/web:${BUILD_NUMBER} ci-cddocker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
+    sh 'docker push ci-cddocker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo/web:${BUILD_NUMBER}'
   }
   stage('deploy on dev environment') {
     sh("sed -i.bak 's#<version>#${env.BUILD_NUMBER}#' ./manifest/web.json")
