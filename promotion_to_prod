@@ -7,7 +7,7 @@ node {
     sh("sed -i.bak 's#<version>#${container_version_for_promotion}#' ./manifest/web.json")
     sh("sed -i.bak 's#<env>#prod#' ./manifest/web.json")
     sh("sed -i.bak 's#<elb_dns>#gl-poc-tea-tff096-pub-agt-elb-1865881313.us-west-1.elb.amazonaws.com/#' ./manifest/web.json")
-    sh("sed -i.bak 's#<registry_path>#docker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo#' ./manifest/web.json")
+    sh("sed -i.bak 's#<registry_path>#ci-cddocker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo#' ./manifest/web.json")
     // sh("cat ./manifest/web.json")
 
     marathon(
