@@ -4,6 +4,7 @@ properties([parameters([
 
 node {
   stage('deploy on prod environment') {
+    git 'https://github.com/GloballogicPractices/mesos-poc-demo-container.git'
     sh("sed -i.bak 's#<version>#${container_version_for_promotion}#' ./manifest/web.json")
     sh("sed -i.bak 's#<env>#prod#' ./manifest/web.json")
     sh("sed -i.bak 's#<elb_dns>#gl-poc-tea-tff096-pub-agt-elb-1865881313.us-west-1.elb.amazonaws.com/#' ./manifest/web.json")
