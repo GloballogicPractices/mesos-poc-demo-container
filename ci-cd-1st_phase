@@ -11,7 +11,7 @@ node {
   stage('deploy on dev environment') {
     sh("sed -i.bak 's#<version>#${env.BUILD_NUMBER}#' ./manifest/web.json")
     sh("sed -i.bak 's#<env>#dev#' ./manifest/web.json")
-    sh("sed -i.bak 's#<elb_dns>#gl-poc-tea-tff096-dev-elb-634032854.us-west-1.elb.amazonaws.com#' ./manifest/web.json")
+    sh("sed -i.bak 's#<elb_dns>#gl-poc-dev-1379105887.us-west-1.elb.amazonaws.com#' ./manifest/web.json")
     sh("sed -i.bak 's#<registry_path>#ci-cddocker-registry.marathon.l4lb.thisdcos.directory:5000/mesos_poc/demo#' ./manifest/web.json")
     // sh("cat ./manifest/web.json")
 
